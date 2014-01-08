@@ -1,0 +1,77 @@
+<style type="text/css">
+.#@(Model.Prefix)btn {
+    display: inline-block;
+    position: relative;
+    @if (Model.IncludeIE)
+    {
+        <text>
+        zoom: 1;
+        *display: inline;
+        </text>
+    }
+    outline: 0;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.#@(Model.Prefix)btn-wrap {
+    position: relative;
+    display: block;
+}
+
+.#@(Model.Prefix)btn-button {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.#@(Model.Prefix)btn-inner {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.#@(Model.Prefix)btn-icon-el {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.#@(Model.Prefix)btn-inner-center {
+    text-align: center;
+}
+
+.#@(Model.Prefix)btn-inner-left {
+    text-align: left;
+}
+
+@if (Model.IncludeRTL)
+{
+    <text>
+    .#@(Model.Prefix)rtl.#@(Model.Prefix)btn-inner-left {
+        text-align: right;
+    }
+    </text>
+}
+
+.#@(Model.Prefix)btn-inner-right {
+    text-align: right;
+}
+
+@if (Model.IncludeRTL) {
+    <text>
+    .#@(Model.Prefix)rtl.#@(Model.Prefix)btn-inner-right {
+        text-align: left;
+    }
+    </text>
+}
+</style>

@@ -1,0 +1,166 @@
+/* tree */
+.ux-foldertree .x-tree-node-leaf .x-tree-node-icon
+{
+    background-image: url('/Styles/Ext/resources/images/default/tree/folder.gif') !important;
+}
+
+/* thumbnail panel */
+.ux-file-thumbs .x-panel-body
+{
+    background: #ffffff;
+    font: 11px Arial, Helvetica, sans-serif;
+}
+
+.ux-file-thumbs .ux-file-thumb
+{
+    height: 48px;
+    padding: 3px;
+}
+.ux-file-thumbs .thumb img
+{
+}
+
+.ux-file-thumbs .ux-file-thumb-wrap
+{
+    float: left;
+    margin: 10px;
+    padding: 5px;
+    width: 100px;
+    text-align: center;
+}
+.ux-file-thumbs .ux-file-thumb-wrap span
+{
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.ux-file-thumbs .x-item-over
+{
+    border: 1px solid #dddddd;
+    background: #efefef url("~/Styles/Ext/resources/images/default/grid/row-over.gif") repeat-x left top;
+    padding: 4px;
+}
+
+.ux-file-thumbs .x-item-selected
+{
+    background: #EFF5FB url("../Images/selected.gif") no-repeat right bottom;
+    border: 1px solid #99BBE8;
+    padding: 4px;
+}
+.ux-file-thumbs .x-item-selected .thumb
+{
+    background: transparent;
+}
+
+/* main toolbar */
+.ux-rename
+{
+    background-image: url('../Icons/16/pencil.png') !important;
+}
+.ux-delete
+{
+    background-image: url('../Icons/16/delete.png') !important;
+}
+.ux-upload
+{
+    background-image: url('../Icons/16/arrow_up.png') !important;
+}
+.ux-download
+{
+    background-image: url('../Icons/16/arrow_down.png') !important;
+}
+.ux-view
+{
+    background-image: url('../Icons/16/application.png') !important;
+}
+.ux-details
+{
+    background-image: url('../Icons/16/application_view_detail.png') !important;
+}
+.ux-thumbs
+{
+    background-image: url('../Icons/16/application_view_tile.png') !important;
+}
+
+/* context menu's */
+.ux-newfolder
+{
+    background-image: url('../Icons/16/folder_add.png') !important;
+}
+.ux-renamefolder
+{
+    background-image: url('../Icons/16/folder_edit.png') !important;
+}
+.ux-deletefolder
+{
+    background-image: url('../Icons/16/folder_delete.png') !important;
+}
+.ux-renamefile
+{
+    background-image: url('../Icons/16/page_white_edit.png') !important;
+}
+.ux-deletefile
+{
+    background-image: url('../Icons/16/page_white_delete.png') !important;
+}
+.ux-downloadfile
+{
+    background-image: url('../Icons/16/page_white_put.png') !important;
+}
+
+/* grid rows */
+.ux-filepanel-iconrow td:first-child div
+{
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 20px;
+}
+.ux-unknown-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white.png');
+}
+.ux-text-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white_text.png');
+}
+.ux-audio-file td:first-child div
+{
+    background-image: url('../Icons/16/music.png');
+}
+.ux-video-file td:first-child div
+{
+    background-image: url('../Icons/16/film.png');
+}
+.ux-image-file td:first-child div
+{
+    background-image: url('../Icons/16/image.png');
+}
+.ux-vector-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white_vector.png');
+}
+.ux-flash-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white_flash.png');
+}
+.ux-document-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white_word.png');
+}
+.ux-spreadsheet-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white_excel.png');
+}
+.ux-presentation-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white_powerpoint.png');
+}
+.ux-acrobat-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white_acrobat.png');
+}
+.ux-archive-file td:first-child div
+{
+    background-image: url('../Icons/16/page_white_compressed.png');
+}

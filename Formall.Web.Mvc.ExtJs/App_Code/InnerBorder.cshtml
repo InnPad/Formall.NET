@@ -1,0 +1,188 @@
+@using Trace = System.Diagnostics.Trace;
+
+@functions
+{
+    public static string InnerBorderSpread(string width)
+    {
+        var top = Functions.Top(width);
+        var right = Functions.Right(width);
+        var bottom = Functions.Bottom(width);
+        var left = Functions.Left(width);
+
+        return Functions.Min((top + bottom) / 2, (left + right) / 2);
+    }
+
+    public static string InnerBorderHOff(string width, string spread)
+    {
+        var left = Functions.Left(width);
+        var right = Functions.Right(width);
+
+        if (right <= 0)
+        {
+            return left - (Variant)spread;
+        }
+        else
+        {
+            return (Variant)spread - right;
+        }
+    }
+
+    string InnerBorderVOff(string width, string spread)
+    {
+        var top = Functions.Top(width);
+        var bottom = Functions.Bottom(width);
+
+        if (bottom <= 0)
+        {
+            return top - (Variant)spread;
+        }
+        else
+        {
+            return spread - (Variant)bottom;
+        }
+    }
+
+    public static bool Even(int number)
+    {
+        return System.Math.Ceiling((float)number / 2) == (number / 2);
+    }
+
+    public static bool Odd(int number)
+    {
+        return System.Math.Ceiling((float)number / 2) != (number / 2);
+    }
+
+    public static bool InnerBorderUsesingleWidth(string width)
+    {
+        var top = Functions.Top(width);
+        var right = Functions.Right(width);
+        var bottom = Functions.Bottom(width);
+        var left = Functions.Left(width);
+
+        if (top == 0)
+        {
+            if (left + right == 0)
+            {
+                return true;
+            }
+            if (bottom >= left + right)
+            {
+                return true;
+            }
+        }
+
+        if (bottom == 0)
+        {
+            if (left + right == 0)
+            {
+                return true;
+            }
+            if (top >= left + right)
+            {
+                return true;
+            }
+        }
+
+        if (left == 0)
+        {
+            if (top + bottom == 0)
+            {
+                return true;
+            }
+            if (right >= top + bottom)
+            {
+                return true;
+            }
+        }
+
+        if (right == 0)
+        {
+            if (top + bottom == 0)
+            {
+                return true;
+            }
+            if (left >= top + bottom)
+            {
+                return true;
+            }
+        }
+
+        if (top + bottom == left + right && Even(top) == Even(bottom) && Even(left) == Even(right))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool InnerBorderUsesingleColor(string color)
+    {
+        var top = Functions.Top(color);
+        var right = Functions.Right(color);
+        var bottom = Functions.Bottom(color);
+        var left = Functions.Left(color);
+
+        if ((top == right) && (bottom == left) && (top == bottom))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool InnerBorderUsesingle(string width, string color)
+    {
+        if (InnerBorderUsesingleColor(color) && InnerBorderUsesingleWidth(width))
+        {
+            return true;
+        }
+        return false;
+    }
+}
+
+@helper InnerBorder(string width = "1px", string color = "#fff", string blur = "0px")
+{
+    if (InnerBorderUsesingle(width, color))
+    {
+        var spread = InnerBorderSpread(width);
+        var hoff = InnerBorderHOff(width, spread);
+        var voff = InnerBorderVOff(width, spread);
+        SingleBoxShadow(Functions.Top(color), hoff, voff, blur, spread, true);
+    }
+    else
+    {
+        var width_top = Functions.Top(width);
+        var width_right = Functions.Right(width);
+        var width_bottom = Functions.Bottom(width);
+        var width_left = Functions.Left(width);
+
+        var color_top = Functions.Top(color);
+        var color_right = Functions.Right(color);
+        var color_bottom = Functions.Bottom(color);
+        var color_left = Functions.Left(color);
+
+        var shadow_top = "false";
+        var shadow_right = "false";
+        var shadow_bottom = "false";
+        var shadow_left = "false";
+
+        if (width_top > 0)
+        {
+            shadow_top = string.Join(" ", color_top, 0, width_top, blur, 0, "inset");
+        }
+        if (width_right > 0)
+        {
+            shadow_right = string.Join(" ", color_right, (-1 * width_right), 0, blur, 0, "inset");
+        }
+        if (width_bottom > 0)
+        {
+            shadow_bottom = string.Join(" ", color_bottom, 0, (-1 * width_bottom), blur, 0, "inset");
+        }
+        if (width_left > 0)
+        {
+            shadow_left = string.Join(" ", color_left, width_left, 0, blur, 0, "inset");
+        }
+
+        BoxShadow(shadow_top, shadow_bottom, shadow_right, shadow_left);
+    }
+}

@@ -1,0 +1,596 @@
+@using Trace = System.Diagnostics.Trace;
+
+@functions {
+    
+    public static string Pad(Variant radius)
+    {
+        radius = Functions.BoxMax(radius);
+        radius = (int)radius;
+        if (radius >= 10)
+        {
+            return radius;
+        }
+        else
+        {
+            return "0" + radius;
+        }
+    }
+
+    public static int NoPx(Variant value)
+    {
+        if (value == 0)
+        {
+            return 0;
+        }
+        return (int)value;
+    }
+}
+
+@helper XFrame(
+    string prefix,
+    string cls,
+    string ui = null,
+    string border_radius = "0px",
+    string border_width = "0px",
+    string padding = null,
+    string background_color = "null",
+    string background_gradient = "null",
+    bool table = false,
+    string background_direction = "top",
+    bool include_frame_rtl = false,
+        // an optional ui to use for images
+    string img_ui = null,
+    string background_stretch = null)
+{
+    var supports_gradients = true;
+    var supports_border_radius = true;
+    var compile_all = true;
+    
+    
+    img_ui = img_ui ?? ui;
+
+    var cls_ui = cls;
+    string cls_img_ui = null;
+    if (ui != null)
+    {
+        cls_ui = cls + '-' + ui;
+        cls_img_ui = cls + '-' + img_ui;
+    }
+
+    var vertical = false;
+    if (background_gradient != null && (background_direction == "left" || background_direction == "right"))
+    {
+        vertical = true;
+    }
+
+    string background_stretch_position = null;
+    if (background_stretch == null)
+    {
+        if (vertical)
+        {
+            background_stretch = "left";
+        }
+        else
+        {
+            background_stretch = "bottom";
+        }
+    }
+
+    if (background_stretch == "top")
+    {
+        background_stretch_position = "bottom";
+    }
+    else if (background_stretch == "bottom")
+    {
+        background_stretch_position = "top";
+    }
+    else if (background_stretch == "left")
+    {
+        background_stretch_position = "right";
+    }
+    else if (background_stretch == "right")
+    {
+        background_stretch_position = "left";
+    }
+
+    string stretch = null;
+
+    if (background_gradient != null)
+    {
+        stretch = Slicer.SlicerBackgroundStretch(cls_ui, background_stretch);
+    }
+
+    // We use the border_radius of the two corners on each edge to determine the "edge's
+    // border_radius". For IE, the framing elements need to be as large as the larger of
+    // the border_radius and the border_width on each edge. These values are passed on to
+    // JavaScript using an encoded background_image url and the equivalent operations are
+    // handled by Renderable.js.
+    //
+    Variant frame_top = Functions.Max(Functions.Top(border_width), Functions.Max(Functions.Top(border_radius), Functions.Right(border_radius)));
+    Variant frame_right = Functions.Max(Functions.Right(border_width), Functions.Max(Functions.Right(border_radius), Functions.Bottom(border_radius)));
+    Variant frame_bottom = Functions.Max(Functions.Bottom(border_width), Functions.Max(Functions.Bottom(border_radius), Functions.Left(border_radius)));
+    Variant frame_left = Functions.Max(Functions.Left(border_width), Functions.Max(Functions.Left(border_radius), Functions.Top(border_radius)));
+    Variant frame_max = Functions.Max(Functions.Max(frame_top, frame_bottom), Functions.Max(frame_left, frame_right));
+
+    // For CSS3 browsers, if the border_radius is larger than the border_width, we need to
+    // apply padding to inset the content. These values can never be 0 because frame_xxx
+    // includes border_xxx in its max.
+    //
+    Variant padding_top = frame_top - Functions.Top(border_width);
+    Variant padding_right = frame_right - Functions.Right(border_width);
+    Variant padding_bottom = frame_bottom - Functions.Bottom(border_width);
+    Variant padding_left = frame_left - Functions.Left(border_width);
+
+    // If there is additional padding, this is understood to be a request to ensure that
+    // the content is **at least** this far from the inside of the border. If the framing
+    // requires more padding, that wins. This is the amount of padding you need in CSS3
+    // browsers.
+    //
+    if (padding != null)
+    {
+        padding_top = Functions.Max(padding_top, Functions.Top(padding));
+        padding_right = Functions.Max(padding_right, Functions.Right(padding));
+        padding_bottom = Functions.Max(padding_bottom, Functions.Bottom(padding));
+        padding_left = Functions.Max(padding_left, Functions.Left(padding));
+    }
+
+    // For IE, the framing elements are sized by frame_xxx and the "_mc" will carry the
+    // extra_padding_xxx.
+    //
+    Variant extra_padding_top = Functions.Max(Functions.Top(border_width) + padding_top - frame_top, 0);
+    Variant extra_padding_right = Functions.Max(Functions.Right(border_width) + padding_right - frame_right, 0);
+    Variant extra_padding_bottom = Functions.Max(Functions.Bottom(border_width) + padding_bottom - frame_bottom, 0);
+    Variant extra_padding_left = Functions.Max(Functions.left(border_width) + padding_left - frame_left, 0);
+
+    var framing_info = "";
+
+    if (table == true)
+    {
+        framing_info = framing_info + 't';
+    }
+    else
+    {
+        framing_info = framing_info + 'd';
+    }
+
+    if (vertical == true)
+    {
+        framing_info = framing_info + 'v';
+    }
+    else
+    {
+        framing_info = framing_info + 'h';
+    }
+
+    framing_info = framing_info + '-' +
+           NoPx(Fuctions.Top(border_radius)) + '-' +
+           NoPx(Fuctions.Right(border_radius)) + '-' +
+           NoPx(Fuctions.Bottom(border_radius)) + '-' +
+           NoPx(Fuctions.left(border_radius)) + '-' +
+           NoPx(Fuctions.Top(border_width)) + '-' +
+           NoPx(Fuctions.Right(border_width)) + '-' +
+           NoPx(Fuctions.Bottom(border_width)) + '-' +
+           NoPx(Fuctions.Left(border_width)) + '-' +
+           NoPx(padding_top) + '-' +
+           NoPx(padding_right) + '-' +
+           NoPx(padding_bottom) + '-' +
+           NoPx(padding_left);
+
+
+    @:.#@(prefix)#@(cls_ui) {
+        if (supports_border_radius)
+        {
+            if (border_radius.Length == 2)
+            {
+                BorderTopLeftRadius(nth(border_radius, 1));
+                BorderTopRightRadius(nth(border_radius, 2));
+            }
+            else if (border_radius.Length == 3)
+            {
+                BorderTopLeftRadius(nth(border_radius, 1));
+                BorderTopRightRadius(nth(border_radius, 2));
+                BorderBottomRightRadius(nth(border_radius, 3));
+            }
+            else if (border_radius.Length == 4)
+            {
+                BorderTopLeftRadius(nth(border_radius, 1));
+                BorderTopRightRadius(nth(border_radius, 2));
+                BorderBottomRightRadius(nth(border_radius, 3));
+                BorderBottomLeftRadius(nth(border_radius, 4));
+            }
+            else
+            {
+                BorderRadius(border_radius);
+            }
+        }
+        
+
+
+    @:    padding: @padding_top padding_right @padding_bottom padding_left;
+    @:    border-width: @border_width;
+    @:    border_style: solid;
+
+    if (background_color != null)
+    {
+        if (supports_gradients && background_gradient != null)
+        {
+            BackgroundGradient(background_color, background_gradient, background_direction);
+        }
+        else
+        {
+
+    @:    background-color: @background_color;
+            }
+    }
+        
+
+
+    @:}
+
+    if (include_frame_rtl)
+    {
+        if (background_direction == "left")
+        {
+            background_direction = "right";
+        }
+        else if (background_direction == "right")
+        {
+            background_direction = "left";
+        }
+
+        if (background_direction == "left" || background_direction == "right")
+        {
+
+    @:.#@(prefix)rtl.#@(prefix)#@(cls_ui) {
+                BackgroundGradient(
+                    background_color,
+                    background_gradient,
+                    background_direction
+                );
+
+    @:}
+        }
+    }
+
+    if (!supports_gradients || compile_all)
+    {
+
+    @:.#@(prefix)#@(cls_ui)_mc {
+            if (background_gradient != null)
+            {
+
+    @:    background-image: @Slicer.SlicerFrameBackgroundImage(cls_ui, "#{cls}/#{cls_img_ui}_fbg");
+
+                if (vertical)
+                {
+
+    @:    background-position: @background_stretch_position 0;
+                }
+                else
+                {
+
+    @:    background-position: 0 @background_stretch_position;
+                }
+            }
+            if (background_color != null)
+            {
+
+    @:    background-color: @background_color;
+            }
+
+    @:}
+    @:
+        if (include_frame_rtl && background_gradient != null)
+        {
+
+    @:.#@(prefix)rtl.#@(prefix)#@(cls_ui)_mc {
+    @:    background-image: @Slicer.SlicerFrameBackgroundImageRtl(cls_ui, "#" + cls + "/#" + cls_img_ui + "_fbg_rtl");
+    @:    background-position: @Functions.RtlBackgroundPosition(background_stretch_position + " 0");
+    @:}
+        }
+
+    @:
+        if (background_gradient != null)
+        {
+
+    @:.#@(prefix)nlg {
+    @:    .#@(prefix)#@(cls_ui) {
+    @:        background-image: @Slicer.SlicerBackgroundImage(cls_ui, "#" + cls + "/#" + cls_img_ui + "_bg");
+                    if (vertical)
+                    {
+
+    @:        background-position: @background_stretch_position 0;
+                    }
+                    else
+                    {
+
+    @:        background-position: 0 @background_stretch_position;
+                    }
+
+    @:    }
+
+                    if (include_frame_rtl)
+                    {
+
+    @:    .#@(prefix)rtl.#@(prefix)#@(cls_ui) {
+    @:        background-image: @Slicer.SlicerBackgroundImageRtl(cls_ui, "#" + cls + "/#" + cls_img_ui + "_bg_rtl");
+    @:        background-position: @Functions.RtlBackgroundPosition(background_stretch_position + " 0");
+    @:    }
+                }
+
+    @:}
+        }
+    }
+
+    if (!supports_border_radius || compile_all)
+    {
+
+    @:.#@(prefix)nbr {
+            // This rule must be in x_nbr to avoid matching on CSS3 browsers.
+
+    @:.#@(prefix)#@(cls_ui) {
+    @:    padding: 0 !important;
+    @:    border_width: 0 !important;
+                BorderRadius("0px");
+                if (background_color != null)
+                {
+
+    @:    background_color: transparent;
+                }
+                else
+                {
+
+    @:    background: #fff;
+                }
+
+                if (background_gradient != null)
+                {
+
+    @:    background_image: none;
+                }
+    }
+
+    @:}
+
+        // This rule must be more specific than other x_nlg rules or else framing will
+        // not be applied to the element. This rule must also be in x_nbr to avoid
+        // matching on CSS3 browsers.
+        //
+
+    @:body.#@(prefix)nbr {
+    @:    .#@(prefix)#@(cls_ui)_frameInfo {
+                // Pass along Div/Table, Horz/Vert, border_radius and border_width
+    // Here we're encoding the framing information in an arbitrary fashion so
+    // it can be parsed by the component and get information about the framing.
+    // Originally, this tried to embed the information using a background image
+    // pointing to about:blank#info however in IE with SSL, this would trigger
+    // the insecure content warning. We also tried encoding the info using a
+    // filter as follows (where framing_info is a string containg the encoded data):
+    // filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=false, src="ext_frame#{framing_info}");
+    // However the filter property can only be read by IE, making it impossible
+    // to debug nocss3 mode in modern browsers. Font_family meets all the
+    // requirements for tunneling data to JavaScript. It can contain an
+    // arbitrary string value, which can be read in JS in any browser, and it
+    // does not trigger any network interactions.
+
+    @:        font_family: #{framing_info};
+    @:    }
+    @:}
+
+    // These rules apply to elements that are not rendered on CSS3 browsers so we do
+    // not need to force the browser to walk to the root of the document searching
+    // for x_nbr!
+
+    if (vertical)
+    {
+        // vertical framing element background positions
+
+    @:.#@(prefix)#@(cls_ui)_tl {
+    @:    background_position: 0 0;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_tr {
+    @:    background_position: 0 (_frame_max);
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_bl {
+    @:    background_position: 0 (_frame_max * 2);
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_br {
+    @:    background_position: 0 (_frame_max * 3);
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_ml {
+    @:    background_position: (_frame_max) 0;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_mr {
+    @:    background_position: right 0;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_tc {
+    @:    background_position: background_stretch_position 0;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_bc {
+    @:    background_position: background_stretch_position (_frame_max);
+    @:}
+
+        if (include_frame_rtl)
+        {
+
+    @:.#@(prefix)rtl.#@(prefix)#@(cls_ui)_tc {
+    @:    background_position: @Functions.RtlBackgroundPosition(background_stretch_position + " 0");
+    @:}
+    @:
+    @:.#@(prefix)rtl.#@(prefix)#@(cls_ui)_bc {
+    @:    background_position: rtl_background_position(background_stretch_position (_frame_max));
+    @:}
+            }
+    }
+    else
+    {
+        // horizontal framing element background positions
+
+    @:.#@(prefix)#@(cls_ui)_tl {
+    @:    background_position: 0 (_frame_max * 2);
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_tr {
+    @:    background_position: right (_frame_max * 3);
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_bl {
+    @:    background_position: 0 (_frame_max * 4);
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_br {
+    @:    background_position: right (_frame_max * 5);
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_ml {
+    @:    background_position: 0 background_stretch_position;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_mr {
+    @:    background_position: right background_stretch_position;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_tc {
+    @:    background_position: 0 0;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_bc {
+    @:    background_position: 0 (_frame_max);
+    @:}
+        }
+
+
+
+    @:.#@(prefix)#@(cls_ui)_tr,
+    @:.#@(prefix)#@(cls_ui)_br,
+    @:.#@(prefix)#@(cls_ui)_mr {
+    @:    padding_right: frame_right;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_tl,
+    @:.#@(prefix)#@(cls_ui)_bl,
+    @:.#@(prefix)#@(cls_ui)_ml {
+    @:    padding_left: frame_left;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_tc {
+    @:    height: frame_top;
+    @:}
+    @:.#@(prefix)#@(cls_ui)_bc {
+    @:    height: frame_bottom;
+    @:}
+    @:
+    @:.#@(prefix)#@(cls_ui)_tl,
+    @:.#@(prefix)#@(cls_ui)_bl,
+    @:.#@(prefix)#@(cls_ui)_tr,
+    @:.#@(prefix)#@(cls_ui)_br,
+    @:.#@(prefix)#@(cls_ui)_tc,
+    @:.#@(prefix)#@(cls_ui)_bc,
+    @:.#@(prefix)#@(cls_ui)_ml,
+    @:.#@(prefix)#@(cls_ui)_mr {
+    @:    zoom:1;
+    @:
+            if (background_color != "transparent")
+            {
+
+    @:    background_image: @Slicer.SlicerCornerSprite(cls_ui, "#" + cls + "/#" + cls_img_ui + "_corners");
+            }
+
+    @:}
+
+    if (background_color != "transparent")
+    {
+        if (include_frame_rtl)
+        {
+
+    @:.#@(prefix)rtl {
+    @:    &.#@(prefix)#@(cls_ui)_tl,
+    @:    &.#@(prefix)#@(cls_ui)_ml,
+    @:    &.#@(prefix)#@(cls_ui)_bl,
+    @:    &.#@(prefix)#@(cls_ui)_tr,
+    @:    &.#@(prefix)#@(cls_ui)_mr,
+    @:    &.#@(prefix)#@(cls_ui)_br {
+    @:        background_image: slicer_corner_sprite_rtl(cls_ui, '#{cls}/#{cls_img_ui}_corners_rtl');
+    @:    }
+    @:}
+            }
+    }
+
+    if (vertical == true)
+    {
+
+    @:.#@(prefix)#@(cls_ui)_tc,
+    @:.#@(prefix)#@(cls_ui)_bc {
+    @:    zoom:1;
+    @:
+                if (background_color != "transparent")
+                {
+
+    @:    background-image: @Slicer.SlicerSidesSprite(cls_ui, "#" + cls + "/#" + cls_img_ui + "_sides");
+    @:    background-repeat: repeat-x;
+                }
+
+    @:}
+
+                if (include_frame_rtl && background_color != "transparent")
+                {
+
+    @:.#@(prefix)rtl {
+    @:    &.#@(prefix)#@(cls_ui)_tc,
+    @:    &.#@(prefix)#@(cls_ui)_bc {
+    @:        background_image: @Slicer.SlicerSidesSpriteRtl(cls_ui, "#" + cls + "/#" + cls_img_ui + "_sides_rtl");
+    @:    }
+    @:}
+            }
+    }
+    else
+    {
+
+    @:.#@(prefix)#@(cls_ui)_ml,
+    @:.#@(prefix)#@(cls_ui)_mr {
+    @:    zoom:1;
+    @:
+                if (background_color != "transparent")
+                {
+
+    @:        background_image: @Slicer.SlicerSidesSprite(cls_ui, "#" + cls + "/#" + cls_img_ui + "_sides");
+                    if (background_gradient == null)
+                    {
+
+    @:            background-repeat: repeat-y;
+                    }
+                }
+
+    @:}
+        }
+
+
+
+    @:.#@(prefix)#@(cls_ui)_mc {
+    @:    padding: @ExtraPaddingTopExtraPaddingRight ExtraPaddingBottomExtraPaddingLeft;
+    @:}
+    @:
+        if (include_ie)
+        {
+            // framed components in ie7 strict mode suffer from an obscure bug that causes the tl and bl framing elements to
+            // be shrink_wrapped to the width of their contents.  This hack forces the elements' widths to fit to their parent
+
+    @:.#@(prefix)strict .#@(prefix)ie7 {
+    @:    .#@(prefix)#@(cls_ui)_tl,
+    @:    .#@(prefix)#@(cls_ui)_bl {
+    @:        position: relative;
+    @:        right: 0;
+    @:    }
+    @:}
+        }
+}
+
+XSlicer(cls_ui);
+}

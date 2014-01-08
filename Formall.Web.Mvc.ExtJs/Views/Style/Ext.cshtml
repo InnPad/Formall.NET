@@ -1,0 +1,53 @@
+﻿@model Formall.Web.Mvc.ExtJs.Models.ExtStyle
+@{
+    var relativePath = PageContext.Page.VirtualPath;
+    relativePath = relativePath.Substring(0, relativePath.LastIndexOf('/') + 1);
+
+    var physicalPath = System.Web.Hosting.HostingEnvironment.MapPath(relativePath);
+}
+<h1>@relativePath</h1>
+<h2>@physicalPath</h2>
+<ul>
+    <li>@(physicalPath + @"Ext\etc\compass.cshtml"</li>
+    <li>@(physicalPath + @"Ext\etc\functions.cshtml"</li>
+    @foreach (var path in System.IO.Directory.GetFiles(physicalPath + @"Ext\etc\mixins", @"*.cshtml", SearchOption.AllDirectories))
+    {
+        <li>@path</li>
+        //Html.RenderPartial(path, Model);
+    }
+</ul>
+<ul>
+    @foreach (var path in System.IO.Directory.GetFiles(physicalPath + @"Ext\var", @"*.cshtml", SearchOption.AllDirectories))
+    {
+        <li>@path</li>
+        //Html.RenderPartial(path, Model);
+    }
+</ul>
+<ul>
+    @foreach (var path in System.IO.Directory.GetFiles(physicalPath + @"Ext\src", @"*.cshtml", SearchOption.AllDirectories))
+    {
+        <li>@path</li>
+        //Html.RenderPartial(path, Model);
+    }
+</ul>
+@{
+    try
+    {
+        //Html.RenderPartial(relativePath + "Ext/etc/functions.cshtml", Model);
+        Html.RenderPartial(relativePath + "Ext/etc/mixins/no-select.cshtml", Model);
+        Html.RenderPartial(relativePath + "Ext/etc/mixins/slicer.cshtml", Model);
+        Html.RenderPartial(relativePath + "Ext/etc/mixins/rotate-element.cshtml", Model);
+        Html.RenderPartial(relativePath + "Ext/etc/mixins/background-gradient.cshtml", Model);
+        Html.RenderPartial(relativePath + "Ext/etc/mixins/inner-border.cshtml", Model);
+        Html.RenderPartial(relativePath + "Ext/etc/mixins/frame.cshtml", Model);
+        Html.RenderPartial(relativePath + "Ext/etc/mixins/theme-background-image.cshtml", Model);
+        Html.RenderPartial(relativePath + "Ext/etc/mixins/border-management.cshtml", Model);
+    }
+    catch (Exception e)
+    {
+    <div>
+        @e.Message
+    </div>
+    }
+}
+

@@ -1,0 +1,9 @@
+<style type="text/css">
+// Must always be on top
+// Pointer events go through so that mousemove fires on the element being dragged *over*
+.#@(Model.Prefix)dd-drag-proxy, // StatusProxy
+.#@(Model.Prefix)dd-drag-current { // DragDropManager
+    z-index: 1000000!important;
+    pointer-events: none;
+}
+</style>

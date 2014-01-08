@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F9371A83-FEF7-4C95-90BF-5F1E011254C6}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Formall.Web.Mvc.ExtJs</RootNamespace>
+    <AssemblyName>Formall.Web.Mvc.ExtJs</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Core">
+      <HintPath>..\packages\BundleTransformer.Core.1.8.17\lib\net40\BundleTransformer.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.SassAndScss">
+      <HintPath>..\packages\BundleTransformer.SassAndScss.1.8.14\lib\net40\BundleTransformer.SassAndScss.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby">
+      <HintPath>..\packages\BundleTransformer.SassAndScss.1.8.14\lib\net40\IronRuby.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby.Libraries">
+      <HintPath>..\packages\BundleTransformer.SassAndScss.1.8.14\lib\net40\IronRuby.Libraries.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\packages\BundleTransformer.SassAndScss.1.8.14\lib\net40\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\packages\BundleTransformer.SassAndScss.1.8.14\lib\net40\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.2\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.4.0.0\lib\net40\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\Globals.cs" />
+    <Content Include="App_Code\GridColumn.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Scripts\ScriptsAreaRegistration.cs" />
+    <Compile Include="Areas\Styles\StylesAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StyleController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ExtStyle.cs" />
+    <Compile Include="App_Code\Variant.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\Styles\Views\Web.config" />
+    <Content Include="Areas\Scripts\Views\Web.config" />
+    <Content Include="App_Code\Functions.cshtml" />
+    <None Include="App_Code\BackgroundGradient.cshtml" />
+    <None Include="App_Code\BorderManagement.cshtml" />
+    <Content Include="App_Code\ThemeBackgroundImage.cshtml" />
+    <Content Include="App_Code\NoSelect.cshtml" />
+    <Content Include="App_Code\Compass.cshtml" />
+    <Content Include="App_Code\Sass.cshtml" />
+    <None Include="App_Code\Frame.cshtml" />
+    <Content Include="App_Code\RotateElement.cshtml" />
+    <None Include="App_Code\InnerBorder.cshtml" />
+    <Content Include="App_Code\lib\compass.rb" />
+    <Content Include="App_Code\lib\compass\actions.rb" />
+    <Content Include="App_Code\lib\compass\app_integration.rb" />
+    <Content Include="App_Code\lib\compass\app_integration\rails.rb" />
+    <Content Include="App_Code\lib\compass\app_integration\stand_alone.rb" />
+    <Content Include="App_Code\lib\compass\app_integration\stand_alone\configuration_defaults.rb" />
+    <Content Include="App_Code\lib\compass\app_integration\stand_alone\installer.rb" />
+    <Content Include="App_Code\lib\compass\browser_support.rb" />
+    <Content Include="App_Code\lib\compass\commands.rb" />
+    <Content Include="App_Code\lib\compass\commands\base.rb" />
+    <Content Include="App_Code\lib\compass\commands\clean_project.rb" />
+    <Content Include="App_Code\lib\compass\commands\create_project.rb" />
+    <Content Include="App_Code\lib\compass\commands\default.rb" />
+    <Content Include="App_Code\lib\compass\commands\extension_command.rb" />
+    <Content Include="App_Code\lib\compass\commands\generate_grid_background.rb" />
+    <Content Include="App_Code\lib\compass\commands\help.rb" />
+    <Content Include="App_Code\lib\compass\commands\imports.rb" />
+    <Content Include="App_Code\lib\compass\commands\installer_command.rb" />
+    <Content Include="App_Code\lib\compass\commands\interactive.rb" />
+    <Content Include="App_Code\lib\compass\commands\list_frameworks.rb" />
+    <Content Include="App_Code\lib\compass\commands\print_version.rb" />
+    <Content Include="App_Code\lib\compass\commands\project_base.rb" />
+    <Content Include="App_Code\lib\compass\commands\project_stats.rb" />
+    <Content Include="App_Code\lib\compass\commands\project_structure.rb" />
+    <Content Include="App_Code\lib\compass\commands\registry.rb" />
+    <Content Include="App_Code\lib\compass\commands\sprite.rb" />
+    <Content Include="App_Code\lib\compass\commands\stamp_pattern.rb" />
+    <Content Include="App_Code\lib\compass\commands\unpack_extension.rb" />
+    <Content Include="App_Code\lib\compass\commands\update_project.rb" />
+    <Content Include="App_Code\lib\compass\commands\validate_project.rb" />
+    <Content Include="App_Code\lib\compass\commands\watch_project.rb" />
+    <Content Include="App_Code\lib\compass\commands\write_configuration.rb" />
+    <Content Include="App_Code\lib\compass\compiler.rb" />
+    <Content Include="App_Code\lib\compass\configuration.rb" />
+    <Content Include="App_Code\lib\compass\configuration\adapters.rb" />
+    <Content Include="App_Code\lib\compass\configuration\comments.rb" />
+    <Content Include="App_Code\lib\compass\configuration\data.rb" />
+    <Content Include="App_Code\lib\compass\configuration\defaults.rb" />
+    <Content Include="App_Code\lib\compass\configuration\file_data.rb" />
+    <Content Include="App_Code\lib\compass\configuration\helpers.rb" />
+    <Content Include="App_Code\lib\compass\configuration\inheritance.rb" />
+    <Content Include="App_Code\lib\compass\configuration\paths.rb" />
+    <Content Include="App_Code\lib\compass\configuration\serialization.rb" />
+    <Content Include="App_Code\lib\compass\dependencies.rb" />
+    <Content Include="App_Code\lib\compass\errors.rb" />
+    <Content Include="App_Code\lib\compass\exec.rb" />
+    <Content Include="App_Code\lib\compass\exec\command_option_parser.rb" />
+    <Content Include="App_Code\lib\compass\exec\global_options_parser.rb" />
+    <Content Include="App_Code\lib\compass\exec\helpers.rb" />
+    <Content Include="App_Code\lib\compass\exec\project_options_parser.rb" />
+    <Content Include="App_Code\lib\compass\exec\sub_command_ui.rb" />
+    <Content Include="App_Code\lib\compass\exec\switch_ui.rb" />
+    <Content Include="App_Code\lib\compass\frameworks.rb" />
+    <Content Include="App_Code\lib\compass\grid_builder.rb" />
+    <Content Include="App_Code\lib\compass\installers.rb" />
+    <Content Include="App_Code\lib\compass\installers\bare_installer.rb" />
+    <Content Include="App_Code\lib\compass\installers\base.rb" />
+    <Content Include="App_Code\lib\compass\installers\manifest.rb" />
+    <Content Include="App_Code\lib\compass\installers\manifest_installer.rb" />
+    <Content Include="App_Code\lib\compass\installers\template_context.rb" />
+    <Content Include="App_Code\lib\compass\logger.rb" />
+    <Content Include="App_Code\lib\compass\quick_cache.rb" />
+    <Content Include="App_Code\lib\compass\rails.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\colors.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\constants.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\cross_browser_support.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\display.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\enumerate.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\env.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\font_files.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\gradient_support.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\image_size.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\inline_image.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\lists.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\math.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\selectors.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\sprites.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\functions\urls.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\monkey_patches.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\monkey_patches\browser_support.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\monkey_patches\traversal.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\engines.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\engines\chunky_png_engine.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\image.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\image_methods.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\image_row.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\layout_methods.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\row_fitter.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\sprite_map.rb" />
+    <Content Include="App_Code\lib\compass\sass_extensions\sprites\sprite_methods.rb" />
+    <Content Include="App_Code\lib\compass\sprite_importer.rb" />
+    <Content Include="App_Code\lib\compass\sprite_importer\binding.rb" />
+    <Content Include="App_Code\lib\compass\sprite_importer\content.erb" />
+    <Content Include="App_Code\lib\compass\stats.rb" />
+    <Content Include="App_Code\lib\compass\test_case.rb" />
+    <Content Include="App_Code\lib\compass\util.rb" />
+    <Content Include="App_Code\lib\compass\validator.rb" />
+    <Content Include="App_Code\lib\compass\version.rb" />
+    <Content Include="App_Code\SassExtensions\Functions\colors.rb" />
+    <Content Include="App_Code\SassExtensions\Functions\constants.rb" />
+    <Content Include="App_Code\SassExtensions\cross_browser_support.rb" />
+    <Content Include="App_Code\SassExtensions\display.rb" />
+    <Content Include="App_Code\SassExtensions\enumerate.rb" />
+    <Content Include="App_Code\SassExtensions\env.rb" />
+    <Content Include="App_Code\SassExtensions\font_files.rb" />
+    <Content Include="App_Code\SassExtensions\gradient_support.rb" />
+    <Content Include="App_Code\SassExtensions\image_size.rb" />
+    <Content Include="App_Code\SassExtensions\inline_image.rb" />
+    <Content Include="App_Code\SassExtensions\lists.rb" />
+    <Content Include="App_Code\SassExtensions\math.rb" />
+    <Content Include="App_Code\SassExtensions\selectors.rb" />
+    <Content Include="App_Code\SassExtensions\sprites.rb" />
+    <Content Include="App_Code\SassExtensions\urls.rb" />
+    <Content Include="App_Code\SassExtensions\Functions\Constants.cshtml" />
+    <None Include="App_Code\Slicer.cshtml" />
+    <Content Include="Views\Style\Ext\etc\mixins\background-gradient.scss" />
+    <Content Include="Views\Style\Ext\etc\mixins\border-management.scss" />
+    <Content Include="Views\Style\Ext\etc\mixins\frame.scss" />
+    <Content Include="Views\Style\Ext\etc\mixins\inner-border.scss" />
+    <Content Include="Views\Style\Ext\etc\mixins\no-select.scss" />
+    <Content Include="Views\Style\Ext\etc\mixins\rotate-element.scss" />
+    <Content Include="Views\Style\Ext\etc\mixins\slicer.scss" />
+    <Content Include="Views\Style\Ext\etc\mixins\theme-background-image.scss" />
+    <Content Include="App_Code\Grid.cshtml" />
+    <None Include="BundleTransformer.Configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Views\Style\Ext\src\button\Button.cshtml" />
+    <None Include="Views\Style\Ext\src\Component.cshtml" />
+    <None Include="Views\Style\Ext\src\container\ButtonGroup.cshtml" />
+    <None Include="Views\Style\Ext\src\container\Viewport.cshtml" />
+    <None Include="Views\Style\Ext\src\dd\DD.cshtml" />
+    <None Include="Views\Style\Ext\src\dd\StatusProxy.cshtml" />
+    <None Include="Views\Style\Ext\src\draw\Component.cshtml" />
+    <None Include="Views\Style\Ext\src\Editor.cshtml" />
+    <None Include="Views\Style\Ext\src\form\FieldSet.cshtml" />
+    <None Include="Views\Style\Ext\src\form\field\Checkbox.cshtml" />
+    <None Include="Views\Style\Ext\src\form\field\Display.cshtml" />
+    <None Include="Views\Style\Ext\src\form\field\File.cshtml" />
+    <None Include="Views\Style\Ext\src\form\field\Hidden.cshtml" />
+    <None Include="Views\Style\Ext\src\form\field\HtmlEditor.cshtml" />
+    <None Include="Views\Style\Ext\src\form\field\Spinner.cshtml" />
+    <None Include="Views\Style\Ext\src\form\field\TextArea.cshtml" />
+    <None Include="Views\Style\Ext\src\form\field\Trigger.cshtml" />
+    <None Include="Views\Style\Ext\src\form\Labelable.cshtml" />
+    <None Include="Views\Style\Ext\src\form\Panel.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\column\Action.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\column\CheckColumn.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\column\Column.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\column\RowNumberer.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\feature\Grouping.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\feature\RowBody.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\feature\RowWrap.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\header\Container.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\header\DropZone.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\plugin\Editing.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\plugin\RowEditing.cshtml" />
+    <None Include="Views\Style\Ext\src\grid\plugin\RowExpander.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\component\Dock.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\container\Absolute.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\container\Border.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\container\Box.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\container\Column.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\container\Container.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\container\Fit.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\container\Form.cshtml" />
+    <None Include="Views\Style\Ext\src\layout\container\Table.cshtml" />
+    <None Include="Views\Style\Ext\src\LoadMask.cshtml" />
+    <None Include="Views\Style\Ext\src\menu\Menu.cshtml" />
+    <None Include="Views\Style\Ext\src\panel\Header.cshtml" />
+    <None Include="Views\Style\Ext\src\panel\Panel.cshtml" />
+    <None Include="Views\Style\Ext\src\panel\Table.cshtml" />
+    <None Include="Views\Style\Ext\src\picker\Color.cshtml" />
+    <None Include="Views\Style\Ext\src\picker\Date.cshtml" />
+    <None Include="Views\Style\Ext\src\ProgressBar.cshtml" />
+    <Content Include="Views\Style\Ext\src\Readme.md" />
+    <None Include="Views\Style\Ext\src\resizer\Splitter.cshtml" />
+    <None Include="Views\Style\Ext\src\resizer\SplitterTracker.cshtml" />
+    <None Include="Views\Style\Ext\src\selection\CheckboxModel.cshtml" />
+    <None Include="Views\Style\Ext\src\slider\Multi.cshtml" />
+    <Content Include="Views\Style\Ext.cshtml" />
+    <None Include="Views\Style\Ext\src\tab\Bar.cshtml" />
+    <None Include="Views\Style\Ext\src\tab\Panel.cshtml" />
+    <None Include="Views\Style\Ext\src\tab\Tab.cshtml" />
+    <None Include="Views\Style\Ext\src\tip\Tip.cshtml" />
+    <None Include="Views\Style\Ext\src\toolbar\Toolbar.cshtml" />
+    <None Include="Views\Style\Ext\src\tree\Panel.cshtml" />
+    <None Include="Views\Style\Ext\src\view\BoundList.cshtml" />
+    <None Include="Views\Style\Ext\src\window\Window.cshtml" />
+    <None Include="Views\Style\Ext\var\Component.cshtml" />
+    <Content Include="Views\Style\Ext\var\Readme.md" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\NewFolder1\" />
+    <Folder Include="App_Code\Sass\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Scripts\Controllers\" />
+    <Folder Include="Areas\Scripts\Models\" />
+    <Folder Include="Areas\Scripts\Views\Shared\" />
+    <Folder Include="Areas\Styles\Controllers\" />
+    <Folder Include="Areas\Styles\Models\" />
+    <Folder Include="Areas\Styles\Views\Ext\" />
+    <Folder Include="Areas\Styles\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Formall.Web.Styling\Formall.Web.Styling.csproj">
+      <Project>{2eb19a94-2748-441e-b56d-1855714a056b}</Project>
+      <Name>Formall.Web.Styling</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59939/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

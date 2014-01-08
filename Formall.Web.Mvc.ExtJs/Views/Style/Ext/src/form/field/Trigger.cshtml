@@ -1,0 +1,22 @@
+<style type="text/css">
+.#@(Model.Prefix)form-trigger {
+    cursor: pointer;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    .#@(Model.Prefix)item-disabled & {
+        cursor: default;
+    }
+}
+
+.#@(Model.Prefix)trigger-noedit {
+    cursor: default;
+}
+
+.#@(Model.Prefix)form-trigger-wrap {
+    vertical-align: top;
+    // The trigger wrap table needs to have border-collapse: separate or else the
+    // horizontal alignment of the text will be off by 1px in IE in neptune (because the 
+    // field border is on the trigger wrap)
+    border-collapse: separate;
+}
+</style>

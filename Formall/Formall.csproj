@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F2147785-4648-4BD4-9D73-D61E07E1B0DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Formall</RootNamespace>
+    <AssemblyName>Formall</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authorization\Client.cs" />
+    <Compile Include="Authorization\Member.cs" />
+    <Compile Include="Authorization\Profile.cs" />
+    <Compile Include="Authorization\Role.cs" />
+    <Compile Include="Automation\Task.cs" />
+    <Compile Include="BinarExtensions.cs" />
+    <Compile Include="Binary.cs" />
+    <Compile Include="Diagnostics\EsbTrace.cs" />
+    <Compile Include="Diagnostics\EventTrace.cs" />
+    <Compile Include="Diagnostics\LogFilter.cs" />
+    <Compile Include="Diagnostics\Logger.cs" />
+    <Compile Include="Diagnostics\TraceExtensions.cs" />
+    <Compile Include="Error.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Navigation\RouteOption.cs" />
+    <Compile Include="Navigation\SegmentClass.cs" />
+    <Compile Include="Navigation\SegmentExtensions.cs" />
+    <Compile Include="Navigation\SegmentType.cs" />
+    <Compile Include="Persistence\Entity.cs" />
+    <Compile Include="Persistence\FileDocument.cs" />
+    <Compile Include="Persistence\FileDocumentContext.cs" />
+    <Compile Include="Persistence\FileEntity.cs" />
+    <Compile Include="Persistence\FileEntry.cs" />
+    <Compile Include="Persistence\FileIndex.cs" />
+    <Compile Include="Persistence\FileMetadata.cs" />
+    <Compile Include="Persistence\FileRepository.cs" />
+    <Compile Include="Persistence\IDocumentContextExtensions.cs" />
+    <Compile Include="Persistence\IRepositoryQuery.cs" />
+    <Compile Include="Persistence\ZipDocument.cs" />
+    <Compile Include="Persistence\ZipDocumentContext.cs" />
+    <Compile Include="Persistence\ZipEntity.cs" />
+    <Compile Include="Persistence\ZipEntry.cs" />
+    <Compile Include="Persistence\ZipIndex.cs" />
+    <Compile Include="Persistence\ZipRepository.cs" />
+    <Compile Include="Persistence\MediaType.cs" />
+    <Compile Include="Presentation\DocumentArrayOutput.cs" />
+    <Compile Include="Presentation\DocumentOutput.cs" />
+    <Compile Include="Presentation\SegmentOutput.cs" />
+    <Compile Include="Primitive.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDocument.cs" />
+    <Compile Include="Navigation\Domain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Navigation\Entity.cs" />
+    <Compile Include="Navigation\Schema.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Navigation\Segment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OperationResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Persistence\IDataContext.cs" />
+    <Compile Include="Persistence\DocumentContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Persistence\DocumentContextMapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Persistence\IDocumentContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Persistence\IRepository.cs" />
+    <Compile Include="Persistence\ModelExtensions.cs" />
+    <Compile Include="Persistence\Store.cs" />
+    <Compile Include="Presentation\IHtml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentation\ISortable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Navigation\Document.cs" />
+    <Compile Include="Presentation\ModelExtensions.cs" />
+    <Compile Include="Reflection\Action.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Navigation\Area.cs" />
+    <Compile Include="Persistence\IEntity.cs" />
+    <Compile Include="Reflection\DynamicExtensions.cs" />
+    <Compile Include="Reflection\FieldExtensions.cs" />
+    <Compile Include="Reflection\Function.cs" />
+    <Compile Include="Reflection\Item.cs" />
+    <Compile Include="Validation\IValidatable.cs" />
+    <Compile Include="Validation\IValidationProvider.cs" />
+    <Compile Include="Reflection\ModelExtensions.cs" />
+    <Compile Include="Reflection\Prototype.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\Field.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\IEdmx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\Model.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Persistence\Metadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\Money.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\Rule.cs" />
+    <Compile Include="Validation\ValidationContext.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
+    <Compile Include="Reflection\Value.cs" />
+    <Compile Include="Serialization\JsonEntity.cs" />
+    <Compile Include="Serialization\XmlEntity.cs" />
+    <Compile Include="Set.cs" />
+    <Compile Include="SuccessResult.cs" />
+    <Compile Include="Text.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Navigation\ISegment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Persistence\IFileSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\Unit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Authentication\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

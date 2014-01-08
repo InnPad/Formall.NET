@@ -1,0 +1,95 @@
+@{
+    var prexif = ViewBag["prefix"];
+}
+
+@helper BorderManagement(string prefix, string parent_cls, string border_width, string border_color)
+{
+    @:.#@(prefix)#@(parent_cls)-outer-border-l {
+    @:    border-left-color: Left(@border_color) !important;
+    @:    border-left-width: Left(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-b {
+    @:    border-bottom-color: Bottom(@border_color) !important;
+    @:    border-bottom-width: Bottom(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-bl {
+    @:    border-bottom-color: Bottom(@border_color) !important;
+    @:    border-bottom-width: Bottom(@border_width) !important;
+    @:    border-left-color: Left(@border_color) !important;
+    @:    border-left-width: Left(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-r {
+    @:    border-right-color: right(@border_color) !important;
+    @:    border-right-width: right(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-rl {
+    @:    border-right-color: right(@border_color) !important;
+    @:    border-right-width: right(@border_width) !important;
+    @:    border-left-color: Left(@border_color) !important;
+    @:    border-left-width: Left(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-rb {
+    @:    border-right-color: right(@border_color) !important;
+    @:    border-right-width: right(@border_width) !important;
+    @:    border-bottom-color: Bottom(@border_color) !important;
+    @:    border-bottom-width: Bottom(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-rbl {
+    @:    border-right-color: right(@border_color) !important;
+    @:    border-right-width: right(@border_width) !important;
+    @:    border-bottom-color: Bottom(@border_color) !important;
+    @:    border-bottom-width: Bottom(@border_width) !important;
+    @:    border-left-color: Left(@border_color) !important;
+    @:    border-left-width: Left(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-t {
+    @:    border-top-color: top(@border_color) !important;
+    @:    border-top-width: top(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-tl {
+    @:    border-top-color: top(@border_color) !important;
+    @:    border-top-width: top(@border_width) !important;
+    @:    border-left-color: Left(@border_color) !important;
+    @:    border-left-width: Left(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-tb {
+    @:    border-top-color: top(@border_color) !important;
+    @:    border-top-width: top(@border_width) !important;
+    @:    border-bottom-color: Bottom(@border_color) !important;
+    @:    border-bottom-width: Bottom(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-tbl {
+    @:    border-top-color: top(@border_color) !important;
+    @:    border-top-width: top(@border_width) !important;
+    @:    border-bottom-color: Bottom(@border_color) !important;
+    @:    border-bottom-width: Bottom(@border_width) !important;
+    @:    border-left-color: Left(@border_color) !important;
+    @:    border-left-width: Left(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-tr {
+    @:    border-top-color: top(@border_color) !important;
+    @:    border-top-width: top(@border_width) !important;
+    @:    border-right-color: right(@border_color) !important;
+    @:    border-right-width: right(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-trl {
+    @:    border-top-color: top(@border_color) !important;
+    @:    border-top-width: top(@border_width) !important;
+    @:    border-right-color: right(@border_color) !important;
+    @:    border-right-width: right(@border_width) !important;
+    @:    border-left-color: Left(@border_color) !important;
+    @:    border-left-width: Left(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-trb {
+    @:    border-top-color: top(@border_color) !important;
+    @:    border-top-width: top(@border_width) !important;
+    @:    border-right-color: right(@border_color) !important;
+    @:    border-right-width: right(@border_width) !important;
+    @:    border-bottom-color: Bottom(@border_color) !important;
+    @:    border-bottom-width: Bottom(@border_width) !important;
+    @:}
+    @:.#@(prefix)#@(parent_cls)-outer-border-trbl {
+    @:    border-color: border_color !important;
+    @:    border-width: border_width !important;
+    @:}
+}

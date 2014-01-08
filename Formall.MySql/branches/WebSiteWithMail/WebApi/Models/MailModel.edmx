@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="MailModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="MailModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MailModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MailModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Messages" EntityType="MailModel.Message" />
+          <EntitySet Name="Folders" EntityType="MailModel.Folder" />
+          <EntitySet Name="Recipients" EntityType="MailModel.Recipient" />
+          <AssociationSet Name="RecipientFolder" Association="MailModel.RecipientFolder">
+            <End Role="Recipient" EntitySet="Recipients" />
+            <End Role="Folder" EntitySet="Folders" />
+          </AssociationSet>
+          <EntitySet Name="Receivers" EntityType="MailModel.Receiver" />
+          <EntitySet Name="Addresses" EntityType="MailModel.Address" />
+          <EntitySet Name="Servers" EntityType="MailModel.Server" />
+          <AssociationSet Name="ServerAddress" Association="MailModel.ServerAddress">
+            <End Role="Server" EntitySet="Servers" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="RecipientAddress" Association="MailModel.RecipientAddress">
+            <End Role="Recipient" EntitySet="Recipients" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="AddressMessage" Association="MailModel.AddressMessage">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SentBy" Nullable="false" />
+          <Property Type="DateTimeOffset" Name="SentOn" Nullable="false" />
+          <Property Type="String" Name="Subject" Nullable="false" />
+          <Property Type="String" Name="Content" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="MailModel.AddressMessage" FromRole="Message" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="Folder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Recipient" Relationship="MailModel.RecipientFolder" FromRole="Folder" ToRole="Recipient" />
+        </EntityType>
+        <EntityType Name="Recipient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Folders" Relationship="MailModel.RecipientFolder" FromRole="Recipient" ToRole="Folder" />
+          <Property Type="String" Name="FullName" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="MailModel.RecipientAddress" FromRole="Recipient" ToRole="Address" />
+        </EntityType>
+        <Association Name="RecipientFolder">
+          <End Type="MailModel.Recipient" Role="Recipient" Multiplicity="1" />
+          <End Type="MailModel.Folder" Role="Folder" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Receiver">
+          <Key>
+            <PropertyRef Name="FolderId" />
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Type="Int32" Name="FolderId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="MessageId" Nullable="false" />
+          <Property Type="String" Name="SentOn" Nullable="false" />
+          <Property Type="String" Name="CC" Nullable="false" />
+          <Property Type="String" Name="BCC" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NickName" Nullable="false" />
+          <NavigationProperty Name="Server" Relationship="MailModel.ServerAddress" FromRole="Address" ToRole="Server" />
+          <Property Type="String" Name="ServerId" Nullable="false" />
+          <Property Type="String" Name="RecipientId" Nullable="false" />
+          <NavigationProperty Name="Recipient" Relationship="MailModel.RecipientAddress" FromRole="Address" ToRole="Recipient" />
+          <NavigationProperty Name="Messages" Relationship="MailModel.AddressMessage" FromRole="Address" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Address" Nullable="false" />
+          <Property Type="String" Name="IP" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="MailModel.ServerAddress" FromRole="Server" ToRole="Address" />
+        </EntityType>
+        <Association Name="ServerAddress">
+          <End Type="MailModel.Server" Role="Server" Multiplicity="1" />
+          <End Type="MailModel.Address" Role="Address" Multiplicity="*" />
+        </Association>
+        <Association Name="RecipientAddress">
+          <End Type="MailModel.Recipient" Role="Recipient" Multiplicity="1" />
+          <End Type="MailModel.Address" Role="Address" Multiplicity="*" />
+        </Association>
+        <Association Name="AddressMessage">
+          <End Type="MailModel.Address" Role="Address" Multiplicity="1" />
+          <End Type="MailModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="SentBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="MailModel" />
+        <Alias Key="Target" Value="MailModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="MailModelContainer" StorageEntityContainer="MailModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

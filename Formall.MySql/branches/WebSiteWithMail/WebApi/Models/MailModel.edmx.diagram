@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9e0ba50092504fe182a03acc952efcb6" Name="Diagram1" >
+        <EntityTypeShape EntityType="MailModel.Message" Width="1.5" PointX="7" PointY="2" />
+        <EntityTypeShape EntityType="MailModel.Folder" Width="1.5" PointX="2.625" PointY="2.5" />
+        <EntityTypeShape EntityType="MailModel.Recipient" Width="1.5" PointX="0.5" PointY="3.375" />
+        <AssociationConnector Association="MailModel.RecipientFolder" />
+        <EntityTypeShape EntityType="MailModel.Receiver" Width="1.5" PointX="4.625" PointY="1" />
+        <EntityTypeShape EntityType="MailModel.Address" Width="1.5" PointX="4.625" PointY="3.375" />
+        <EntityTypeShape EntityType="MailModel.Server" Width="1.5" PointX="7" PointY="4.375" />
+        <AssociationConnector Association="MailModel.ServerAddress" />
+        <AssociationConnector Association="MailModel.RecipientAddress" />
+        <AssociationConnector Association="MailModel.AddressMessage" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,13 @@
+<style type="text/css">
+.#@(Model.Prefix)form-textarea {
+    overflow: auto;
+    resize: none; //Disable browser resizable textarea
+    @if (Model.IncludeSafari) {
+        <text>
+        .#@(Model.Prefix)safari.#@(Model.Prefix)mac & {
+            margin-bottom: -2px; // another bogus margin bug, safari/mac only
+        }
+        </text>
+    }
+}
+</style>

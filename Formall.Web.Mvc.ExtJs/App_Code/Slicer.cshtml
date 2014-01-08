@@ -1,0 +1,105 @@
+//
+// Copyright (c) 2013. Sencha Inc.
+//
+
+@functions {
+    const string slicer_image_extension = "png";
+    static System.Collections.Generic.Dictionary<string, string> slicer_gen = new System.Collections.Generic.Dictionary<string, string>();
+    static System.Collections.Generic.Dictionary<string, string> slicer_map = new System.Collections.Generic.Dictionary<string, string>();
+    static int slicer_map_size = 0;
+    
+    public static string SliceIt(string cls, string kind, string path, string extension)
+    {
+        var url = ThemeBackgroundImage.ThemeBackgroundImage(path, extension, true);
+
+        if (url != "none")
+        {
+            var op = kind + ':' + url;
+            var slice = AddSlice(cls, op);
+        }
+
+        return url;
+    }
+
+    public static string AddSlice(string cls, string op)
+    {
+        cls = Quote(cls);
+        string slices;
+        if (!slicer_map.TryGetValue(cls, out slices))
+        {
+            slices = Unquote(op);
+            slicer_map_size = slicer_map_size + 1;
+        }
+        else
+        {
+            slices = Append(slices, Unquote(op), comma);
+        }
+
+        slicer_map[cls] = slices;
+
+        return slices;
+    }
+
+    public static string SlicerBackgroundImage(string cls, string path, string extension = slicer_image_extension)
+    {
+        return SliceIt(cls, "bg", path, extension);
+    }
+
+    public static string SlicerBackgroundImageRtl(string cls, string path, string extension = slicer_image_extension)
+    {
+        return SliceIt(cls, "bg-rtl", path, extension);
+    }
+
+    public static string SlicerFrameBackgroundImage(string cls, string path, string extension = slicer_image_extension)
+    {
+        return SliceIt(cls, "frame-bg", path, extension);
+    }
+
+    public static string SlicerFrameBackgroundImageRtl(string cls, string path, string extension = slicer_image_extension)
+    {
+        return SliceIt(cls, "frame-bg-rtl", path, extension);
+    }
+
+    public static string SlicerCornerSprite(string cls, string path, string extension = slicer_image_extension)
+    {
+        return SliceIt(cls, "corners", path, extension);
+    }
+
+    public static string SlicerCornerSpriteRtl(string cls, string path, string extension = slicer_image_extension)
+    {
+        return SliceIt(cls, "corners-rtl", path, extension);
+    }
+
+    public static string SlicerSidesSprite(string cls, string path, string extension = slicer_image_extension)
+    {
+        return SliceIt(cls, "sides", path, extension);
+    }
+
+    public static string SlicerSidesSpriteRtl(string cls, string path, string extension = slicer_image_extension)
+    {
+        return SliceIt(cls, "sides-rtl", path, extension);
+    }
+
+    public static string SlicerBackgroundStretch(string cls, string stretch)
+    {
+        return AddSlice(cls, "stretch:" + stretch);
+    }
+}
+
+@helper XSlicer(string prefix, string cls)
+{
+    cls = Quote(cls);
+    string slices;
+
+    if (slicer_map.TryGetValue(cls, out slices))
+    {
+        /*<if slicer>*/
+@:.#@(prefix)#@(cls):after {
+@:    display: none;
+@:    content: "x-slicer:#@(slices)";
+@:}
+        /*</if slicer>*/
+        // add a comment line to ensure the end directive gets its own lines
+        /* */
+    }
+}

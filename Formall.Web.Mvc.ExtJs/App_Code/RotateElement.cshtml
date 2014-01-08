@@ -1,0 +1,73 @@
+﻿@* Rotates an element vertically using a css3 transform
+ * <param name="angle">angle of rotation (90, 180, or 270)</param>
+ * <param name="includeIE"></param>
+ * <param name="backgroundColor">bg color to use for ms chroma filter</param>
+ *@
+@helper RotateElement(int angle, bool includeIE, string backgroundColor = null)
+{
+    string prefix = Model.Prefix;
+
+    string rotationOrigin = null;
+    var rotation = Rotate("#" + angle + "deg");
+    int? ieRotation = null;
+
+    if (angle == 90)
+    {
+        ieRotation = 1;
+        rotationOrigin = "0 0";
+    }
+    else if (angle == 180)
+    {
+        ieRotation = 2;
+        rotationOrigin = "50% 50%";
+    }
+    else if (angle == 270)
+    {
+        ieRotation = 3;
+        rotationOrigin = "100% 0";
+    }
+
+    @:-webkit-transform: @rotation; 
+    @:-webkit-transform-origin: @rotationOrigin;
+    @:-moz-transform: @rotation;
+    @:-moz-transform-origin: @rotationOrigin;
+    @:-o-transform: @rotation;	
+    @:-o-transform-origin: @rotationOrigin;
+    @:transform: $rotation;
+    @:transform-origin: @rotationOrigin;
+
+    if (includeIE)
+    {
+        // In IE9 and below we have to use a BasicImage filter to achieve 90 or 270 degree
+        // rotation of the text container. Text rotated using this methodology does
+        // not display using ClearType font unless the element has a background. To
+        // work around this, we apply a background color to the text container element
+        // and then use a Chroma filter to display all pixels of that color as transparent.
+        @:.#@(prefix)ie9m & {
+        if (Model.BackgroundColor != null)
+        {
+        @:background-color: @backgroundColor;
+        @:filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#@ieRotation),
+        @:progid:DXImageTransform.Microsoft.Chroma(color=#@backgroundColor);
+        }
+        else
+        {
+        @:filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#@ieRotation);
+        }
+        @:}
+    }
+}
+
+@helper UnrotateElement(bool includeIE)
+{
+    @:-webkit-transform: none; 
+    @:-moz-transform: none;	
+    @:-o-transform: none;	
+    @:transform: none;
+
+    if (includeIE)
+    {
+    @:background-color: transparent;
+    @:filter: none;
+    }
+}

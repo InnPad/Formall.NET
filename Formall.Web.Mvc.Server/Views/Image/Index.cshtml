@@ -1,0 +1,50 @@
+﻿@model Formall.Persistence.FileDocumentContext
+@{
+    ViewBag.Title = "Images";
+    var query = Request.Url.Query;
+    string url;
+}
+
+<style type="text/css">
+    div.cell {
+        float: left;
+        margin: 2px;
+        padding: 8px;
+        border: 1px solid #808080;
+    }
+
+        div.cell img, div.cell div {
+            margin: 0;
+            padding: 0;
+        }
+</style>
+
+@*<section>
+    
+    <h2>Barcodes</h2>
+
+    <div class="cell">
+        @{
+            url = Url.Content("~/Image/QrCode") + "?contents=formall.net&moduleSize=4";
+            <img src="@url" alt="qr-code" />
+        }
+        <div>Qr Code - formall.net</div>
+    </div>
+</section>*@
+
+<section>
+
+    <h2>Images</h2>
+
+    @foreach (var entry in Model.Index)
+    {
+        <div class="cell">
+            @if (entry.Metadata.MediaType.StartsWith("image/"))
+            {
+                url = Url.Content("~/Image/Glyph/" + entry.Metadata.Key.Replace('/', '-')) + query;
+                <img src="@url" alt="@entry.Metadata.Key (@entry.Metadata.MediaType)" />
+            }
+            <div>@entry.Name@entry.Metadata.Extension</div>
+        </div>
+    }
+</section>

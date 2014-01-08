@@ -1,0 +1,39 @@
+<style type="text/css">
+.#@(Model.Prefix)fieldset {
+    display: block; /* preserve margins in IE */
+    position: relative;
+}
+
+.#@(Model.Prefix)fieldset-header {
+    overflow: hidden; // fixes a webkit bug where legend elements that have floated children are not displayed
+
+    .#@(Model.Prefix)form-item,
+    .#@(Model.Prefix)tool {
+        float: left;
+    }
+
+    .#@(Model.Prefix)form-cb-wrap {
+        font-size: 0;
+        line-height: 0;
+    }
+
+    .#@(Model.Prefix)form-cb {
+        margin: 0; // override the default checkbox margin
+    }
+}
+
+@if (Model.IncludeRtl) {
+    <text>
+    .#@(Model.Prefix)rtl.#@(Model.Prefix)fieldset-header {
+        .#@(Model.Prefix)form-item,
+        .#@(Model.Prefix)tool {
+            float: right;
+        }
+    }
+    </text>
+}
+
+.#@(Model.Prefix)fieldset-header-text {
+    float: left;
+}
+</style>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17E16223-B52E-404E-B5A0-DD1369C4FCF0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Custom.Calculation.QrCode</RootNamespace>
+    <AssemblyName>QrCode</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataEncodation\AlphanumericEncoder.cs" />
+    <Compile Include="DataEncodation\AlphanumericTable.cs" />
+    <Compile Include="DataEncodation\CharCountIndicatorTable.cs" />
+    <Compile Include="DataEncodation\DataEncode.cs" />
+    <Compile Include="DataEncodation\ECISet.cs" />
+    <Compile Include="DataEncodation\EightBitByteEncoder.cs" />
+    <Compile Include="DataEncodation\EncodationStruct.cs" />
+    <Compile Include="DataEncodation\EncoderBase.cs" />
+    <Compile Include="DataEncodation\InputRecognition\InputRecognise.cs" />
+    <Compile Include="DataEncodation\InputRecognition\ModeEncodeCheck.cs" />
+    <Compile Include="DataEncodation\InputRecognition\RecognitionStruct.cs" />
+    <Compile Include="DataEncodation\KanjiEncoder.cs" />
+    <Compile Include="DataEncodation\Mode.cs" />
+    <Compile Include="DataEncodation\NumericEncoder.cs" />
+    <Compile Include="EncodingRegion\BCHCalculator.cs" />
+    <Compile Include="EncodingRegion\Codeword.cs" />
+    <Compile Include="EncodingRegion\FormatInformation.cs" />
+    <Compile Include="EncodingRegion\VersionInformation.cs" />
+    <Compile Include="ErrorCorrectionLevel.cs" />
+    <Compile Include="ErrorCorrection\ECGenerator.cs" />
+    <Compile Include="Masking\MaskPatternType.cs" />
+    <Compile Include="Masking\MatrixExtensions.cs" />
+    <Compile Include="Masking\NullPattern.cs" />
+    <Compile Include="Masking\Pattern.cs" />
+    <Compile Include="Masking\Pattern0.cs" />
+    <Compile Include="Masking\Pattern1.cs" />
+    <Compile Include="Masking\Pattern2.cs" />
+    <Compile Include="Masking\Pattern3.cs" />
+    <Compile Include="Masking\Pattern4.cs" />
+    <Compile Include="Masking\Pattern5.cs" />
+    <Compile Include="Masking\Pattern6.cs" />
+    <Compile Include="Masking\Pattern7.cs" />
+    <Compile Include="Masking\PatternFactory.cs" />
+    <Compile Include="Masking\Scoring\MatrixScoreCalculator.cs" />
+    <Compile Include="Masking\Scoring\Penalty.cs" />
+    <Compile Include="Masking\Scoring\Penalty1.cs" />
+    <Compile Include="Masking\Scoring\Penalty2.cs" />
+    <Compile Include="Masking\Scoring\Penalty3.cs" />
+    <Compile Include="Masking\Scoring\Penalty4.cs" />
+    <Compile Include="Masking\Scoring\PenaltyFactory.cs" />
+    <Compile Include="Masking\Scoring\PenaltyRules.cs" />
+    <Compile Include="Positioning\PositioninngPatternBuilder.cs" />
+    <Compile Include="Positioning\Stencils\AlignmentPattern.cs" />
+    <Compile Include="Positioning\Stencils\DarkDotAtLeftBottom.cs" />
+    <Compile Include="Positioning\Stencils\PatternStencilBase.cs" />
+    <Compile Include="Positioning\Stencils\PositionDetectionPattern.cs" />
+    <Compile Include="Positioning\Stencils\TimingPattern.cs" />
+    <Compile Include="Positioning\TriStateMatrixExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QrCode.cs" />
+    <Compile Include="QRCodeConstantVariable.cs" />
+    <Compile Include="QRCodeEncode.cs" />
+    <Compile Include="QrEncoder.cs" />
+    <Compile Include="ReedSolomon\GaloisField256.cs" />
+    <Compile Include="ReedSolomon\GeneratorPolynomial.cs" />
+    <Compile Include="ReedSolomon\PolyDivideStruct.cs" />
+    <Compile Include="ReedSolomon\Polynomial.cs" />
+    <Compile Include="ReedSolomon\ReedSolomonEncoder.cs" />
+    <Compile Include="Terminate\Terminator.cs" />
+    <Compile Include="VersionDetail.cs" />
+    <Compile Include="Versions\ErrorCorrectionBlock.cs" />
+    <Compile Include="Versions\ErrorCorrectionBlocks.cs" />
+    <Compile Include="Versions\InputOutOfBoundaryException.cs" />
+    <Compile Include="Versions\QRCodeVersion.cs" />
+    <Compile Include="Versions\VersionControl.cs" />
+    <Compile Include="Versions\VersionControlStruct.cs" />
+    <Compile Include="Versions\VersionTable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeoMath\GeoMath.csproj">
+      <Project>{de9a0b0e-fa3f-4940-aa4a-a282f38502ae}</Project>
+      <Name>GeoMath</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

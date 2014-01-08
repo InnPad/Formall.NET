@@ -1,0 +1,171 @@
+﻿@{
+    ViewBag.Title = "File Browser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    File Browser</h2>
+<div style="margin: 10px 0 0 10px;" id="browser-ct">
+</div>
+<div style="margin: 10px 0 0 10px;" id="filebrowser-ct">
+</div>
+<div id="upload-window" class="x-hidden">
+    <div class="x-window-header">
+        Upload Dialog</div>
+    <div id="upload-content">
+    </div>
+</div>
+
+<form id="fileupload" action="api/v1/File" method="POST" enctype="multipart/form-data">
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="row fileupload-buttonbar">
+            <div class="span7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="icon-ban-circle icon-white"></i>
+                    <span>Cancel upload</span>
+                </button>
+                <button type="button" class="btn btn-danger delete">
+                    <i class="icon-trash icon-white"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" class="toggle">
+            </div>
+            <div class="span5">
+                <!-- The global progress bar -->
+                <div class="progress progress-success progress-striped active fade">
+                    <div class="bar" style="width:0%;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- The loading indicator is shown during image processing -->
+        <div class="fileupload-loading"></div>
+        <br>
+        <!-- The table listing the files available for upload/download -->
+        <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+    </form>
+    
+    <!-- modal-gallery is the modal dialog used for the image gallery -->
+    <div id="modal-gallery" class="modal modal-gallery hide fade">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3 class="modal-title"></h3>
+        </div>
+        <div class="modal-body"><div class="modal-image"></div></div>
+        <div class="modal-footer">
+            <a class="btn btn-primary modal-next">
+                <span>Next</span>
+                <i class="icon-arrow-right icon-white"></i>
+            </a>
+            <a class="btn btn-info modal-prev">
+                <i class="icon-arrow-left icon-white"></i>
+                <span>Previous</span>
+            </a>
+            <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000">
+                <i class="icon-play icon-white"></i>
+                <span>Slideshow</span>
+            </a>
+            <a class="btn modal-download" target="_blank">
+                <i class="icon-download"></i>
+                <span>Download</span>
+            </a>
+        </div>
+    </div>
+
+<!-- The template to display files available for upload -->
+@Html.Partial("Download.x")
+<!-- The template to display files available for download -->
+@Html.Partial("Upload.x")
+
+@section styles {
+    <link type="text/css" rel="stylesheet" href="/Areas/Content/Styles/FileBrowserPanel.css">
+    <link type="text/css" rel="stylesheet" href="/Areas/Content/Styles/FileUploadField.css">
+    <style type="text/css">
+        #div-form-1, #div-upload-1
+        {
+            background: #e3e3e3;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+    
+    <link type="text/css" rel="stylesheet" href="/Areas/Content/Styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="/Areas/Content/Styles/bootstrap-responsive.min.css">
+    <link type="text/css" rel="stylesheet" href="/Areas/Content/Styles/bootstrap-image-gallery.min.css">
+
+    <link type="text/css" rel="stylesheet" href="/Areas/Content/Styles/jquery.fileupload-ui.css">
+}
+@section scripts {
+    <!-- FileBrowserPanel -->
+    @*<script type="text/javascript" src="/Areas/Content/Scripts/Ext.ux.FileBrowserPanel.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/Ext.ux.FileUploaderPanel.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/Ext.ux.form.FileUploadField.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/Ext.ux.XHRUpload.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/swfupload.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/swfupload.swfobject.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/AwesomeUploader.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/Ext.ux.UploadWindow.js"></script>*@
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Ext/ux/grid/plugin/RowEditing.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Ext/ux/tree/plugin/TreeEditing.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Ext/ux/DataView/LabelEditor.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Ext/ux/DataView/DragSelector.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/Content/Scripts/Ext/ux/DetailsPanel.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/Content/Scripts/Ext/ux/ThumbsPanel.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/Content/Scripts/Ext/ux/UploadPanel.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/Content/Scripts/Ext/ux/FilePanel.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/Content/Scripts/Ext/ux/FolderPanel.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/Content/Scripts/Ext/ux/BrowserPanel.js")"></script>
+    <!-- locale 
+    <script type="text/javascript" src="/ext-3.0.0/src/locale/ext-lang-nl.js"></script>
+    <script type="text/javascript" src="locale/nl_NL.js"></script>
+    -->
+    <script type="text/javascript">
+        Ext.onReady(function () {
+
+            // spiffy tooltips!
+            Ext.QuickTips.init();
+
+            // create a new filebrowserpanel and render it to 'filebrowser-ct'
+//            var fb = Ext.create('Ext.ux.FileBrowserPanel', {
+//                width: 800,
+//                height: 600,
+//                renderTo: 'filebrowser-ct'
+//            });
+
+            // create a new filebrowserpanel and render it to 'filebrowser-ct'
+            var browser = Ext.create('Ext.ux.BrowserPanel', {
+                width: 800,
+                height: 600,
+                renderTo: 'browser-ct'
+            });
+
+        });
+    </script>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/Areas/Content/Scripts/tmpl.min.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/canvas-to-blob.min.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/load-image.min.js"></script>
+
+    <script type="text/javascript" src="/Areas/Content/Scripts/bootstrap-image-gallery.min.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/Areas/Content/Scripts/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/jquery.fileupload-ip.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/jquery.fileupload-ui.js"></script>
+
+    <script type="text/javascript" src="/Areas/Content/Scripts/locale.js"></script>
+    <script type="text/javascript" src="/Areas/Content/Scripts/main.js"></script>
+}

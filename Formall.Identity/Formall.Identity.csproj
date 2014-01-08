@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{04BADD28-BEBB-4381-9232-BC95A6912A60}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Formall</RootNamespace>
+    <AssemblyName>Formall.Identity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\Tokens\RepositoryX509SecurityTokenHandler.cs" />
+    <Compile Include="Authentication\Identity.cs" />
+    <Compile Include="Authentication\IdentityProvider.cs" />
+    <Compile Include="Authentication\IdentityProviderTypes.cs" />
+    <Compile Include="Authentication\OAuth2ProviderTypes.cs" />
+    <Compile Include="Authentication\RelyingParty.cs" />
+    <Compile Include="Authentication\Tokens\RepositoryUserNameSecurityTokenHandler.cs" />
+    <Compile Include="Authentication\Tokens\X509CertificateSessionSecurityTokenHandler.cs" />
+    <Compile Include="Authentication\TokenTypes.cs" />
+    <Compile Include="Authorization\Certificate.cs" />
+    <Compile Include="Authorization\ClientSecretTypes.cs" />
+    <Compile Include="Authorization\CodeToken.cs" />
+    <Compile Include="Authorization\CodeTokenTypes.cs" />
+    <Compile Include="Authorization\Configuration\AdfsIntegrationConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\DiagnosticsConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\FederationMetadataConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\GlobalConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\KeyMaterialConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\OAuth2Configuration.cs" />
+    <Compile Include="Authorization\Configuration\OpenIdConnectConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\ProtocolConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\SimpleHttpConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\WSFederationConfiguration.cs" />
+    <Compile Include="Authorization\Configuration\WSTrustConfiguration.cs" />
+    <Compile Include="Authorization\StoredGrant.cs" />
+    <Compile Include="Authorization\StoredGrantTypes.cs" />
+    <Compile Include="Authentication\Tokens\ClientCertificateIssuerNameRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Authentication\Tokens\IdentityProviderIssuerNameRegistry.cs" />
+    <Compile Include="Security\CryptoHelper.cs" />
+    <Compile Include="Security\X509Certificates.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Formall.Composition\Formall.Composition.csproj">
+      <Project>{1934383f-4438-4199-855e-ae647b064d63}</Project>
+      <Name>Formall.Composition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Formall.Diagnostics\Formall.Diagnostics.csproj">
+      <Project>{10e63a81-b309-4dba-bfec-b8d3561493c3}</Project>
+      <Name>Formall.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Formall.Persistence\Formall.Persistence.csproj">
+      <Project>{1c40ec3c-9d39-4367-92b6-7117cafc73ec}</Project>
+      <Name>Formall.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Formall\Formall.csproj">
+      <Project>{1b322869-6d47-4da8-b174-ab28b8589113}</Project>
+      <Name>Formall</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

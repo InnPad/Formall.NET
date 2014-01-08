@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<application>
+  <folder name="Archives">
+    <file name="*" />
+  </folder>
+  <folder name="Areas">
+    <folder name="*">
+      <folder name="Archives">
+        <file name="*" />
+      </folder>
+      <folder name="Binaries">
+        <file name="*" />
+      </folder>
+      <folder name="Documents">
+        <file name="*" />
+      </folder>
+      <folder name="Icons">
+        <file name="*" />
+      </folder>
+      <folder name="Images">
+        <file name="*" />
+      </folder>
+      <folder name="Scripts">
+        <file name="*" />
+      </folder>
+      <folder name="Settings">
+        <file name="*" />
+      </folder>
+      <folder name="Strings">
+        <file name="*" />
+      </folder>
+      <folder name="Styles">
+        <file name="*" />
+      </folder>
+      <folder name="Templates">
+        <file name="*" />
+      </folder>
+      <folder name="Views">
+        <file name="*" />
+      </folder>
+    </folder>
+  </folder>
+  <folder name="Binaries">
+    <file name="*" />
+  </folder>
+  <folder name="Documents">
+    <file name="*" />
+  </folder>
+  <folder name="Icons">
+    <file name="*" />
+  </folder>
+  <folder name="Images">
+    <file name="*" />
+  </folder>
+  <folder name="Members">
+    <folder name="*">
+      <folder name="Images">
+        <file name="*" />
+      </folder>
+    </folder>
+  </folder>
+  <folder name="Scripts">
+    <file name="*" />
+  </folder>
+  <folder name="Settings">
+    <file name="*" />
+  </folder>
+  <folder name="Strings">
+    <file name="*" />
+  </folder>
+  <folder name="Styles">
+    <file name="*" />
+  </folder>
+  <folder name="Templates">
+    <file name="*" />
+  </folder>
+  <folder name="Views">
+    <file name="*" />
+  </folder>
+</application>

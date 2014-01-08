@@ -1,0 +1,45 @@
+﻿@using System.Web.Optimization
+@using Empress.Areas.Composition
+@using Empress.Areas.Composition.Mvc
+<!DOCTYPE html>
+<html>
+<head>
+	<title>@ViewBag.Title</title>
+	
+	@MvcHtmlString.Create(Html.RenderCssHere(new []
+												{
+													new BasicPath("Base", "~/Content/themes/base"),
+													new BasicPath("Styles", "~/Areas/Content/Styles")
+												}))
+
+	@MvcHtmlString.Create(Html.RenderJsHere(new []
+											   {
+												   new BasicPath("googleCDN", "http://ajax.googleapis.com/ajax/libs/"),
+                                                   new BasicPath("Scripts", "~/Areas/Content/Scripts"),
+											   }))
+
+	@{
+		Html.RequiresCss("Site.css", "Content", 1);
+	}
+
+    @Styles.Render("~/Content/Site.css")
+    @Styles.Render("~/Content/themes/base/css")
+    @RenderSection("Styles")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Scripts")
+</head>
+<body>
+	<div class="page">
+		<div id="header">
+			<div id="title">
+				<h1>Content Manager</h1>
+			</div>
+		</div>
+		<div id="main">
+			@RenderBody()
+		</div>
+		<div id="footer">
+		</div>
+	</div>
+</body>
+</html>

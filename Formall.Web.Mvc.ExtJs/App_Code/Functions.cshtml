@@ -1,0 +1,141 @@
+﻿@using Trace = System.Diagnostics.Trace;
+
+@*Create a file called Functions.cshtml in App_Code and then paste the code you have into the file. Then you can call the DisplayButton method in any .cshtml file by prefixing it with the file name:
+
+var myBool = Functions.DisplayButton(DateTime.Now, DateTime.Now.AddDays(30));
+For more on working with functions and helpers in ASP.NET Web Pages, read this: http://www.mikesdotnetting.com/Article/173/The-Difference-Between-@Helpers-and-@Functions-In-WebMatrix*@
+
+@functions {
+
+    public static Variant ParseBox(string box, int index)
+    {
+        var split = box.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        return index < split.Length ? split[index] : null;
+    }
+
+    public static Variant Min(Variant value1, Variant value2)
+    {
+        if (value1 > value2)
+        {
+            return value2;
+        }
+        else if (value2 > value1)
+        {
+            return value1;
+        }
+        return value1;
+    }
+
+    public static Variant Max(Variant value1, Variant value2)
+    {
+        if (value1 > value2)
+        {
+            return value1;
+        }
+        else if (value2 > value1)
+        {
+            return value2;
+        }
+        return value1;
+    }
+
+    public static Variant X(string position)
+    {
+        return ParseBox(position, 1);
+    }
+
+    public static Variant Y(string position)
+    {
+        return ParseBox(position, 2);
+    }
+
+    public static Variant Top(string box)
+    {
+        return ParseBox(box, 1);
+    }
+
+    public static Variant Right(string box)
+    {
+        return ParseBox(box, 2);
+    }
+
+    public static Variant Bottom(string box)
+    {
+        return ParseBox(box, 3);
+    }
+
+    public static Variant Left(string box)
+    {
+        return ParseBox(box, 4);
+    }
+
+    public static Variant Vertical(string box)
+    {
+        return Top(box) + Bottom(box);
+    }
+
+    public static Variant Horizontal(string box)
+    {
+        return Left(box) + Right(box);
+    }
+
+    public static Variant BoxMax(string box)
+    {
+        return Max(Max(Top(box), Right(box)), Max(Bottom(box), Left(box)));
+    }
+
+    public static Variant BoxMin(string box)
+    {
+        return Min(Min(Top(box), Right(box)), Min(Bottom(box), Left(box)));
+    }
+
+    public static string Rotate90(string box)
+    {
+        return string.Join(" ", Left(box), Top(box), Right(box), Bottom(box));
+    }
+
+    public static string Rotate180(string box)
+    {
+        return string.Join(" ", Bottom(box), Left(box), Top(box), Right(box));
+    }
+
+    public static string rotate270(string box)
+    {
+        return string.Join(" ", Right(box), Bottom(box), Left(box), Top(box));
+    }
+
+    public static string FlipVertical(string box)
+    {
+        return string.Join(" ", Bottom(box), Right(box), Top(box), Left(box));
+    }
+
+    public static string FlipHorizontal(string box)
+    {
+        return string.Join(" ", Top(box), Left(box), Bottom(box), Right(box));
+    }
+
+    public static string Rtl(string box)
+    {
+        return string.Join(" ", Top(box), Left(box), Bottom(box), Right(box));
+    }
+
+    public static string RtlBackgroundPosition(string pos)
+    {
+        Variant x = Top(pos);
+        Variant newX = null;
+
+        if (x == "right" || x == 100)
+        {
+            newX = 0;
+        }
+        else if (x == 0 || x == "left")
+        {
+            newX = "right";
+        }
+        else
+        {
+            newX = x;
+        }
+        return string.Join(" ", newX, Right(pos));
+    }
+}
