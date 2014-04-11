@@ -209,11 +209,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Seeds\Base.package.js" />
-    <Content Include="App_Data\Seeds\Core.package.js" />
-    <Content Include="App_Data\Seeds\Money.package.js" />
-    <Content Include="App_Data\Seeds\Unit.package.js" />
-    <Content Include="App_Data\Seeds\Value.package.js" />
+    <Content Include="App_Data\Seeds\Base.package.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Seeds\Core.package.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Seeds\Money.package.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Seeds\Unit.package.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Seeds\Value.package.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -278,6 +288,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\Formall.net.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\ext-all-debug-w-comments.js" />
     <Content Include="Scripts\ext-all-debug.js" />
